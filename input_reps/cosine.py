@@ -73,9 +73,9 @@ def s2d_angular(s):
 
 
 # return matrix of distances between all possible pairs of lines from x and y
-all_cosine(x, y) = lambda x, y: _all_cosine_d(x, y, s2d_cosine)
-all_angular(x, y) = lambda x, y: _all_cosine_d(x, y, s2d_angular)
+all_cosine = lambda x, y: _all_cosine_d(x, y, s2d_cosine)
+all_angular = lambda x, y: _all_cosine_d(x, y, s2d_angular)
 
 # return vector of distances between matched pairs of lines from x and y
-matched_cosine(x, y) =  lambda x, y: _matched_cosine_d(x, y, s2d_cosine)
-matched_angular(x, y) =  lambda x, y: _matched_cosine_d(x, y, s2d_cosine)
+matched_cosine =  lambda x, y: _matched_cosine_d(x, y, s2d_cosine)
+matched_angular =  lambda x, y: _matched_cosine_d(x, y, s2d_cosine)

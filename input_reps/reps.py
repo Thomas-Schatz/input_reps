@@ -151,11 +151,19 @@ def mfcc(y=None, sr=16000, n_mfcc=13, dct_type=2, norm='ortho',
     # compute MFCCs
     coefs = scipy.fftpack.dct(S, axis=0, type=dct_type, norm=norm)[:n_mfcc]
 
-    if zeroth_coef == 'energy':
+    if zeroth_coef == 'replace 0 with logE':
         # replace 0th order MFCC coef with log energy
         coefs[0, :] = log_energy(y)
-    elif zeroth_coef == 'remove':
+    elif zeroth_coef == 'remove 0':
         coefs = coefs[1:, :]
+    elif zeroth_coef == 'concatenate logE':
+        coefs = np.row_stack([log_energy(y), coefs])
+    elif zeroth_coef == 'duplicate 0':
+        coefs = np.row_stack([coefs[0, :], coefs])
+    elif zeroth_coef is None:
+        pass
+    else:
+        raise ValueError('Unsupported zeroth_coef option: {}'.format(zeroth_coef))
 
     if cep_mean_norm:
         # do cepstral mean normalization

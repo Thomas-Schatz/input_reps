@@ -55,8 +55,8 @@ def dtw_on_logE(x, y, normalized, cosine_type='angular'):
         metric2 = cosine.matched_cosine
     else:
         raise ValueError('Unsupported cosine_type value: {}'.format(cosine_type))
-    alignment_then_diss(x[:, :1], x[:, 1:], y[:, :1], y[:, 1:],
-                        metric1, metric2, normalized=normalized)
+    return alignment_then_diss(x[:, :1], x[:, 1:], y[:, :1], y[:, 1:],
+                               metric1, metric2, normalized=normalized)
 
 
 # dtw_on_E ready to be used in run_abx
