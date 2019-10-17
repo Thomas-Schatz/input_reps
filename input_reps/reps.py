@@ -9,7 +9,7 @@ Compute MFCC coefficients.
 
 Steps:
     Waveform -> pre-emphasis -> STFT with Hanning window 25ms + 10ms -> 128 channels mel power-spectrogram
-    using area-normalized triangular filters over 0-8000Hz -> to DB (log-compression) -> type II DCT (PCA)
+    using area-normalized triangular filters over 0-8000Hz -> to DB (log-compression) -> type II DCT (PCA?)
     -> 13 coefficients -> replace 0-th order coefficient with log-energy or drop it (optional)
     -> perform cepstral mean normalization (optional)
 
@@ -34,6 +34,8 @@ Usage:
     # coefs is a 13 by nb_frames numpy array of MFCCs
 """
 
+
+
 import numpy as np
 import scipy.fftpack
 import scipy.signal as sig
@@ -41,7 +43,9 @@ from librosa.core.spectrum import power_to_db, stft
 from librosa import filters
 
 
-def pre_emphasize(y):
+def pre_emphasize(y, fs=16000):
+    # approximate outer/middle hear filter
+    # this is sampling frequency dependent
     b = [1, -.97]
     a = 1
     zi = sig.lfilter_zi(b, a)
@@ -49,6 +53,7 @@ def pre_emphasize(y):
 
 
 def log_energy(y, n_fft=400, hop_length=160):
+
     power_spectrum = np.abs(stft(y, n_fft=n_fft, hop_length=hop_length, center=False))**2
     log_E = 10*np.log10(sum(power_spectrum))  # in dB
     return log_E
