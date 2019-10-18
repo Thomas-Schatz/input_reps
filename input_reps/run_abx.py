@@ -23,7 +23,7 @@ import ABXpy.analyze as ana
 #import ABXpy.distances.metrics.dtw as dtw
 #import ABXpy.distances.metrics.kullback_leibler as kl
 #import ABXpy.distances.metrics.cosine as cos
-import scipy.spatial.distance as dis
+import scipy.spatial.distance as scipy_dis
 import numpy as np
 import dtw
 import cosine
@@ -55,7 +55,7 @@ def dtw_on_logE(x, y, normalized, cosine_type='angular'):
 
     This assumes the signal log-energy can be found on the first feature coordinate.
     """
-    metric1 = lambda x, y: dis.cdist(x, y, 'euclidean')  # cosine on 1D data does not make sense
+    metric1 = lambda x, y: scipy_dis.cdist(x, y, 'euclidean')  # cosine on 1D data does not make sense
     if cosine_type == 'angular':
         metric2 = cosine.matched_angular
     elif cosine_type == 'cosine':
@@ -120,7 +120,7 @@ if __name__=='__main__':
     if args.distance == 'dtw-cos':
         frame_dis = cosine.all_cosine
     #    elif args.distance == 'dtw-euc':
-    #        frame_dis = lambda x, y: dis.cdist(x, y, 'euclidean')
+    #        frame_dis = lambda x, y: scipy_dis.cdist(x, y, 'euclidean')
     elif args.distance == 'dtw-ang':
         frame_dis = cosine.all_angular
     elif args.distance == 'dtw-logE+cos':
