@@ -51,8 +51,8 @@ cpdef _dtw(IND_t N, IND_t M, CTYPE_t[:,:] dist_array, bool normalized, bool retu
             cost[i,j] = dist_array[i,j] + min(cost[i-1,j], cost[i-1,j-1], cost[i,j-1])
 
     final_cost = cost[N-1, M-1]
+    path_len = 1  # not always used
     if normalized or return_path:
-        path_len = 1
         i = N-1
         j = M-1
         while i > 0 and j > 0:

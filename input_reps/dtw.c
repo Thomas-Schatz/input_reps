@@ -2631,8 +2631,8 @@ static PyObject *__pyx_f_10input_reps_3dtw__dtw(__pyx_t_10input_reps_3dtw_IND_t 
  *             cost[i,j] = dist_array[i,j] + min(cost[i-1,j], cost[i-1,j-1], cost[i,j-1])
  * 
  *     final_cost = cost[N-1, M-1]             # <<<<<<<<<<<<<<
+ *     path_len = 1  # not always used
  *     if normalized or return_path:
- *         path_len = 1
  */
   __pyx_t_41 = (__pyx_v_N - 1);
   __pyx_t_42 = (__pyx_v_M - 1);
@@ -2654,33 +2654,33 @@ static PyObject *__pyx_f_10input_reps_3dtw__dtw(__pyx_t_10input_reps_3dtw_IND_t 
   /* "input_reps/dtw.pyx":54
  * 
  *     final_cost = cost[N-1, M-1]
- *     if normalized or return_path:             # <<<<<<<<<<<<<<
- *         path_len = 1
+ *     path_len = 1  # not always used             # <<<<<<<<<<<<<<
+ *     if normalized or return_path:
  *         i = N-1
  */
-  __pyx_t_44 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_normalized)); if (unlikely(__pyx_t_44 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_v_path_len = 1;
+
+  /* "input_reps/dtw.pyx":55
+ *     final_cost = cost[N-1, M-1]
+ *     path_len = 1  # not always used
+ *     if normalized or return_path:             # <<<<<<<<<<<<<<
+ *         i = N-1
+ *         j = M-1
+ */
+  __pyx_t_44 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_normalized)); if (unlikely(__pyx_t_44 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (!__pyx_t_44) {
   } else {
     __pyx_t_43 = __pyx_t_44;
     goto __pyx_L12_bool_binop_done;
   }
-  __pyx_t_44 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_return_path)); if (unlikely(__pyx_t_44 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_44 = __Pyx_PyObject_IsTrue(((PyObject *)__pyx_v_return_path)); if (unlikely(__pyx_t_44 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_43 = __pyx_t_44;
   __pyx_L12_bool_binop_done:;
   if (__pyx_t_43) {
 
-    /* "input_reps/dtw.pyx":55
- *     final_cost = cost[N-1, M-1]
- *     if normalized or return_path:
- *         path_len = 1             # <<<<<<<<<<<<<<
- *         i = N-1
- *         j = M-1
- */
-    __pyx_v_path_len = 1;
-
     /* "input_reps/dtw.pyx":56
+ *     path_len = 1  # not always used
  *     if normalized or return_path:
- *         path_len = 1
  *         i = N-1             # <<<<<<<<<<<<<<
  *         j = M-1
  *         while i > 0 and j > 0:
@@ -2688,7 +2688,7 @@ static PyObject *__pyx_f_10input_reps_3dtw__dtw(__pyx_t_10input_reps_3dtw_IND_t 
     __pyx_v_i = (__pyx_v_N - 1);
 
     /* "input_reps/dtw.pyx":57
- *         path_len = 1
+ *     if normalized or return_path:
  *         i = N-1
  *         j = M-1             # <<<<<<<<<<<<<<
  *         while i > 0 and j > 0:
@@ -2940,12 +2940,12 @@ static PyObject *__pyx_f_10input_reps_3dtw__dtw(__pyx_t_10input_reps_3dtw_IND_t 
  */
     }
 
-    /* "input_reps/dtw.pyx":54
- * 
+    /* "input_reps/dtw.pyx":55
  *     final_cost = cost[N-1, M-1]
+ *     path_len = 1  # not always used
  *     if normalized or return_path:             # <<<<<<<<<<<<<<
- *         path_len = 1
  *         i = N-1
+ *         j = M-1
  */
   }
 
