@@ -94,9 +94,7 @@ if __name__=='__main__':
     parser.add_argument('res_id', help=('identifier for the results'
                                         '(model + task)'))
     parser.add_argument('distance', help='dtw-cos, dtw-ang, dtw-logE+cos, dtw-logE+ang')
-    parser.add_argument('normalized', type=bool,
-                        help=('if true, take mean distance along'
-                              'dtw path length instead of sum'))
+    parser.add_argument('normalized')
     args = parser.parse_args()
     assert path.exists(args.feat_file), ("No such file "
                                          "{}".format(args.feat_file))
@@ -134,7 +132,12 @@ if __name__=='__main__':
     else: 
         distance = lambda x, y, normalized: dtw_on_logE(x, y, normalized,
                                                         cosine_type=cosine_type)
-        
+    if args.normalized == 'True':
+        normalized = True
+    elif args.normalized == 'False':
+        normalized = False
+    else:
+        raise ValueError('Unsupported normalized value {}'.format(normalized))
     run_ABX(args.feat_file, args.task_file, dis_file, score_file, result_file,
-            distance, args.normalized)
+            distance, normalized)
 

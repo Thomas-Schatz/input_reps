@@ -7,6 +7,9 @@ Adapted from https://github.com/librosa
 
 Compute MFCC coefficients.
 
+Note: there is a pre-emphasis function in librosa in a misc. section and I wouldn't be suprised
+if there was an energy estimator as well somewhere, so code below might be simplified a little.
+
 Steps:
     Waveform -> pre-emphasis -> STFT with Hanning window 25ms + 10ms -> 128 channels mel power-spectrogram
     using area-normalized triangular filters over 0-8000Hz -> to DB (log-compression) -> type II DCT (PCA?)
